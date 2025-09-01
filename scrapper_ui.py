@@ -1,6 +1,6 @@
 import streamlit as st
-#from data_scrapper.scrape_data import scrape_flipkart_products, save_to_csv
-#from data_ingestion.ingestion_pipeline import DataIngestion
+from data_scrapper.scrape_data import scrape_flipkart_products, save_to_csv
+from data_ingestion.ingestion_pipeline import DataIngestion
 import os
 
 output_path = "data/product_reviews.csv"
