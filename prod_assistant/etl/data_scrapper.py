@@ -98,4 +98,17 @@ class FlipkartScraper:
         return products
     
     def save_to_csv(self, data, filename="product_reviews.csv"):
-        pass
+        """Save the scraped product reviews to a CSV file."""
+        if os.path.isabs(filename):
+            path = filename
+        elif os.path.dirname(filename):  # filename includes subfolder like 'data/product_reviews.csv'
+            path = filename
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+        else:
+            # plain filename like 'output.csv'
+            path = os.path.join(self.output_dir, filename)
+
+        with open(path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(["product_id", "product_title", "rating", "total_reviews", "price", "top_reviews"])
+            writer.writerows(data)
